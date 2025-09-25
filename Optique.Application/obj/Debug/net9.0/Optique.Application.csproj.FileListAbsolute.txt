@@ -1,0 +1,15 @@
+E:\repos\chaimaeoptique\Optique.Application\bin\Debug\net9.0\Optique.Application.deps.json
+E:\repos\chaimaeoptique\Optique.Application\bin\Debug\net9.0\Optique.Application.dll
+E:\repos\chaimaeoptique\Optique.Application\bin\Debug\net9.0\Optique.Application.pdb
+E:\repos\chaimaeoptique\Optique.Application\bin\Debug\net9.0\Optique.Domain.dll
+E:\repos\chaimaeoptique\Optique.Application\bin\Debug\net9.0\Optique.Domain.pdb
+E:\repos\chaimaeoptique\Optique.Application\obj\Debug\net9.0\Optique.Application.csproj.AssemblyReference.cache
+E:\repos\chaimaeoptique\Optique.Application\obj\Debug\net9.0\Optique.Application.GeneratedMSBuildEditorConfig.editorconfig
+E:\repos\chaimaeoptique\Optique.Application\obj\Debug\net9.0\Optique.Application.AssemblyInfoInputs.cache
+E:\repos\chaimaeoptique\Optique.Application\obj\Debug\net9.0\Optique.Application.AssemblyInfo.cs
+E:\repos\chaimaeoptique\Optique.Application\obj\Debug\net9.0\Optique.Application.csproj.CoreCompileInputs.cache
+E:\repos\chaimaeoptique\Optique.Application\obj\Debug\net9.0\Optique..E5373C75.Up2Date
+E:\repos\chaimaeoptique\Optique.Application\obj\Debug\net9.0\Optique.Application.dll
+E:\repos\chaimaeoptique\Optique.Application\obj\Debug\net9.0\refint\Optique.Application.dll
+E:\repos\chaimaeoptique\Optique.Application\obj\Debug\net9.0\Optique.Application.pdb
+E:\repos\chaimaeoptique\Optique.Application\obj\Debug\net9.0\ref\Optique.Application.dll

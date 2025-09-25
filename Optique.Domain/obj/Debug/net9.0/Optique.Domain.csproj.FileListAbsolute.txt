@@ -1,0 +1,11 @@
+E:\repos\chaimaeoptique\Optique.Domain\bin\Debug\net9.0\Optique.Domain.deps.json
+E:\repos\chaimaeoptique\Optique.Domain\bin\Debug\net9.0\Optique.Domain.dll
+E:\repos\chaimaeoptique\Optique.Domain\bin\Debug\net9.0\Optique.Domain.pdb
+E:\repos\chaimaeoptique\Optique.Domain\obj\Debug\net9.0\Optique.Domain.GeneratedMSBuildEditorConfig.editorconfig
+E:\repos\chaimaeoptique\Optique.Domain\obj\Debug\net9.0\Optique.Domain.AssemblyInfoInputs.cache
+E:\repos\chaimaeoptique\Optique.Domain\obj\Debug\net9.0\Optique.Domain.AssemblyInfo.cs
+E:\repos\chaimaeoptique\Optique.Domain\obj\Debug\net9.0\Optique.Domain.csproj.CoreCompileInputs.cache
+E:\repos\chaimaeoptique\Optique.Domain\obj\Debug\net9.0\Optique.Domain.dll
+E:\repos\chaimaeoptique\Optique.Domain\obj\Debug\net9.0\refint\Optique.Domain.dll
+E:\repos\chaimaeoptique\Optique.Domain\obj\Debug\net9.0\Optique.Domain.pdb
+E:\repos\chaimaeoptique\Optique.Domain\obj\Debug\net9.0\ref\Optique.Domain.dll
