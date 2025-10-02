@@ -1,0 +1,11 @@
+# .NET
+**/bin/
+**/obj/
+
+# Angular
+optique-web/node_modules/
+optique-web/dist/
+optique-web/.angular/
+
+# IDE
+.vscode/

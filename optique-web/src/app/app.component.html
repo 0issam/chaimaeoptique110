@@ -1,0 +1,236 @@
+<mat-toolbar color="primary" class="app-toolbar">
+  <span class="title">Facture</span>
+  <span class="spacer"></span>
+  <button mat-icon-button (click)="downloadPdf()" [disabled]="!lastId" matTooltip="Télécharger PDF">
+    <mat-icon>picture_as_pdf</mat-icon>
+  </button>
+  <!-- <button mat-raised-button color="warn" class="ml8" (click)="newInvoice()">
+    <mat-icon>add</mat-icon>&nbsp;Nouvelle facture
+  </button> -->
+</mat-toolbar>
+
+<main class="container">
+
+    <div class="top-actions">
+  <button mat-raised-button color="primary" (click)="newInvoice()">
+    <mat-icon>add_circle</mat-icon>&nbsp;Créer une nouvelle facture
+  </button>
+</div>
+  <mat-card class="card">
+    <mat-card-title>Créer / Éditer une facture</mat-card-title>
+    <mat-card-subtitle *ngIf="lastId">Dernière facture créée : <b>#{{ lastId }}</b></mat-card-subtitle>
+    <mat-divider></mat-divider>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
+
+      <!-- grille responsive 2 colonnes (1 col sur mobile) -->
+      <section class="grid2">
+        <!-- CLIENT autocomplete -->
+        <div class="row">
+          <label>Client *</label>
+          <mat-form-field appearance="outline" class="fld">
+            <input type="text" matInput [formControl]="clientCtrl" [matAutocomplete]="autoClient"
+                   placeholder="Rechercher un client…">
+            <mat-autocomplete #autoClient="matAutocomplete" [displayWith]="displayClient"
+                              (optionSelected)="onClientSelected($event.option.value)">
+              <mat-option *ngFor="let c of filteredClients$ | async" [value]="c">
+                {{ c.nom }} {{ c.prenom || '' }}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </div>
+
+        <!-- MEDECIN autocomplete -->
+        <div class="row">
+          <label>Médecin</label>
+          <mat-form-field appearance="outline" class="fld">
+            <input type="text" matInput [formControl]="medecinCtrl" [matAutocomplete]="autoMed"
+                   placeholder="Rechercher un médecin…">
+            <mat-autocomplete #autoMed="matAutocomplete" [displayWith]="displayMedecin"
+                              (optionSelected)="onMedecinSelected($event.option.value)">
+              <mat-option *ngFor="let m of filteredMedecins$ | async" [value]="m">
+                {{ m.nom }} {{ m.prenom || '' }}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </div>
+
+        
+      </section>
+
+      <mat-divider></mat-divider>
+
+      <h3 class="mt">Lignes</h3>
+
+      <div class="table-scroll">
+        <table class="lignes" formArrayName="lignes">
+          <thead>
+          <tr>
+            <th style="min-width: 220px;">Désignation</th>
+            <th>Qté</th>
+            <th>PU</th>
+            <th>Total</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let g of lignes.controls; let i = index" [formGroupName]="i">
+            <td>
+              <mat-form-field appearance="outline" class="cell-field">
+                <input matInput formControlName="designation" placeholder="ex: Monture" />
+              </mat-form-field>
+            </td>
+            <td style="width:110px">
+              <mat-form-field appearance="outline" class="cell-field">
+                <input matInput type="number" formControlName="qte" min="1" />
+              </mat-form-field>
+            </td>
+            <td style="width:140px">
+              <mat-form-field appearance="outline" class="cell-field">
+                <input matInput type="number" formControlName="prixUnitaire" min="0" step="0.01" />
+                <span matSuffix class="suffix">MAD</span>
+              </mat-form-field>
+            </td>
+            <td class="total-cell">
+              {{ ((+g.value.qte || 0) * (+g.value.prixUnitaire || 0)) | number:'1.2-2' }}
+            </td>
+            <td class="actions-cell">
+              <button mat-icon-button color="warn" (click)="removeLigne(i)" aria-label="Supprimer">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+
+      <mat-divider></mat-divider>
+<h3 class="mt">Ordonnance (facultatif)</h3>
+
+<!-- Upload document -->
+<div class="row">
+  <label>Document</label>
+  <div class="fld">
+    <input #ordFile type="file" hidden (change)="onOrdFilePick($event)" accept="image/png,image/jpeg,application/pdf">
+    <button mat-stroked-button type="button" color="primary" (click)="ordFile.click()" [disabled]="locked || ordUploading">
+      <mat-icon>upload</mat-icon>
+      <span *ngIf="!ordUploading">Importer une photo / PDF</span>
+      <span *ngIf="ordUploading">Import en cours…</span>
+    </button>
+    <div class="ord-preview" *ngIf="ordUrl">
+      <mat-icon color="accent">check_circle</mat-icon>
+      <a [href]="ordUrl" target="_blank">Voir le document</a>
+    </div>
+  </div>
+</div>
+
+<!-- Vision LOIN / PRÈS -->
+<section class="grid2">
+  <!-- VISION LOIN -->
+  <div class="box">
+    <div class="box-title">VISION LOIN</div>
+    <div class="vision-grid" [formGroup]="ordonnance">
+      <div class="row">
+        <label>OD</label>
+        <mat-form-field appearance="outline" class="cell">
+          <input matInput type="number" step="0.25" placeholder="Sph" formControlName="Loin_OD_Sph">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="cell">
+          <input matInput type="number" step="0.25" placeholder="Cyl" formControlName="Loin_OD_Cyl">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="cell">
+          <input matInput type="number" step="1" placeholder="Axe" formControlName="Loin_OD_Axe">
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <label>OG</label>
+        <mat-form-field appearance="outline" class="cell">
+          <input matInput type="number" step="0.25" placeholder="Sph" formControlName="Loin_OG_Sph">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="cell">
+          <input matInput type="number" step="0.25" placeholder="Cyl" formControlName="Loin_OG_Cyl">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="cell">
+          <input matInput type="number" step="1" placeholder="Axe" formControlName="Loin_OG_Axe">
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+
+  <!-- VISION PRÈS -->
+  <div class="box">
+    <div class="box-title">VISION PRÈS</div>
+    <div class="vision-grid" [formGroup]="ordonnance">
+      <div class="row">
+        <label>OD</label>
+        <mat-form-field appearance="outline" class="cell">
+          <input matInput type="number" step="0.25" placeholder="Sph" formControlName="Pres_OD_Sph">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="cell">
+          <input matInput type="number" step="0.25" placeholder="Cyl" formControlName="Pres_OD_Cyl">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="cell">
+          <input matInput type="number" step="1" placeholder="Axe" formControlName="Pres_OD_Axe">
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <label>OG</label>
+        <mat-form-field appearance="outline" class="cell">
+          <input matInput type="number" step="0.25" placeholder="Sph" formControlName="Pres_OG_Sph">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="cell">
+          <input matInput type="number" step="0.25" placeholder="Cyl" formControlName="Pres_OG_Cyl">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="cell">
+          <input matInput type="number" step="1" placeholder="Axe" formControlName="Pres_OG_Axe">
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <label>ADD</label>
+        <mat-form-field appearance="outline" class="cell">
+          <input matInput type="number" step="0.25" placeholder="ADD" formControlName="ADD_PRES">
+        </mat-form-field>
+        <label style="margin-left:8px;">Date</label>
+        <mat-form-field appearance="outline" class="cell">
+          <input matInput type="date" formControlName="dateOrdonnance">
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+      <div class="add-line">
+        <button mat-stroked-button type="button" (click)="addLigne()">
+          <mat-icon>add</mat-icon>&nbsp;Ajouter une ligne
+        </button>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <div class="totaux">
+        <div class="note">
+          <mat-form-field appearance="outline" class="fld">
+            <textarea matInput formControlName="notes" rows="2" placeholder="Notes (optionnel)"></textarea>
+          </mat-form-field>
+        </div>
+        <div class="total-val">
+          <div>Total TTC</div>
+          <div class="amount">{{ total | number:'1.2-2' }} MAD</div>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+          <mat-icon>save</mat-icon>&nbsp;Enregistrer
+        </button>
+        <button mat-stroked-button type="button" (click)="downloadPdf()" [disabled]="!lastId">
+          <mat-icon>picture_as_pdf</mat-icon>&nbsp;PDF
+        </button>
+      </div>
+
+    </form>
+  </mat-card>
+</main>
