@@ -212,3 +212,4 @@ E:\repos\chaimaeoptique\Optique.Api\obj\Debug\net9.0\Optique.Api.pdb
 E:\repos\chaimaeoptique\Optique.Api\obj\Debug\net9.0\Optique.Api.genruntimeconfig.cache
 E:\repos\chaimaeoptique\Optique.Api\obj\Debug\net9.0\ref\Optique.Api.dll
 E:\repos\chaimaeoptique\Optique.Api\bin\Debug\net9.0\Optique.Api.staticwebassets.runtime.json
+E:\repos\chaimaeoptique\Optique.Api\obj\Debug\net9.0\Optique.Api.sourcelink.json

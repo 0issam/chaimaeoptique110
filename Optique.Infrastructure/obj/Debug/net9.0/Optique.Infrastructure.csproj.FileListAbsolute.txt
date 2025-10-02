@@ -36,3 +36,4 @@ E:\repos\chaimaeoptique\Optique.Infrastructure\obj\Debug\net9.0\refint\Optique.I
 E:\repos\chaimaeoptique\Optique.Infrastructure\obj\Debug\net9.0\Optique.Infrastructure.pdb
 E:\repos\chaimaeoptique\Optique.Infrastructure\obj\Debug\net9.0\Optique.Infrastructure.genruntimeconfig.cache
 E:\repos\chaimaeoptique\Optique.Infrastructure\obj\Debug\net9.0\ref\Optique.Infrastructure.dll
+E:\repos\chaimaeoptique\Optique.Infrastructure\obj\Debug\net9.0\Optique.Infrastructure.sourcelink.json

@@ -9,3 +9,4 @@ E:\repos\chaimaeoptique\Optique.Domain\obj\Debug\net9.0\Optique.Domain.dll
 E:\repos\chaimaeoptique\Optique.Domain\obj\Debug\net9.0\refint\Optique.Domain.dll
 E:\repos\chaimaeoptique\Optique.Domain\obj\Debug\net9.0\Optique.Domain.pdb
 E:\repos\chaimaeoptique\Optique.Domain\obj\Debug\net9.0\ref\Optique.Domain.dll
+E:\repos\chaimaeoptique\Optique.Domain\obj\Debug\net9.0\Optique.Domain.sourcelink.json

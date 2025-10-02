@@ -13,3 +13,4 @@ E:\repos\chaimaeoptique\Optique.Application\obj\Debug\net9.0\Optique.Application
 E:\repos\chaimaeoptique\Optique.Application\obj\Debug\net9.0\refint\Optique.Application.dll
 E:\repos\chaimaeoptique\Optique.Application\obj\Debug\net9.0\Optique.Application.pdb
 E:\repos\chaimaeoptique\Optique.Application\obj\Debug\net9.0\ref\Optique.Application.dll
+E:\repos\chaimaeoptique\Optique.Application\obj\Debug\net9.0\Optique.Application.sourcelink.json
